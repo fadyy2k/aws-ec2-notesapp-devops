@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 DB_HOST = os.getenv("DB_HOST", "localhost")
 DB_USER = os.getenv("DB_USER", "notesuser")
-DB_PASS = os.getenv("DB_PASS", "ChangeMe_StrongPassword")
+DB_PASS = os.environ["DB_PASS"]
 DB_NAME = os.getenv("DB_NAME", "notesdb")
 
 HTML = """
