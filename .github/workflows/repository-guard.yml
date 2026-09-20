@@ -1,0 +1,36 @@
+name: Repository Guard
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  repository-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Reject tracked sensitive local files
+        shell: bash
+        run: |
+          set -euo pipefail
+          sensitive="$(git ls-files | grep -E '(^|/)\.env$|(^|/)terraform\.tfvars$|\.pem$|\.p12$|\.pfx$|(^|/)id_(rsa|ed25519)$' || true)"
+          if [[ -n "$sensitive" ]]; then
+            echo "Tracked sensitive/local-only files are not allowed:"
+            echo "$sensitive"
+            exit 1
+          fi
+
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
