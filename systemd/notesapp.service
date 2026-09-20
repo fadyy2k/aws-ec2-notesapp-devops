@@ -9,11 +9,8 @@ User=ec2-user
 Group=ec2-user
 WorkingDirectory=/opt/notesapp
 
-# Environment variables (edit DB_PASS after deployment)
-Environment=DB_HOST=localhost
-Environment=DB_USER=notesuser
-Environment=DB_PASS=ChangeMe_StrongPassword
-Environment=DB_NAME=notesdb
+# Runtime configuration is stored outside the repository.
+EnvironmentFile=/etc/notesapp.env
 
 ExecStart=/opt/notesapp/venv/bin/gunicorn -w 2 -b 127.0.0.1:8000 app:app
 Restart=always
