@@ -92,7 +92,7 @@ sudo mysql -u root -p
 ```sql
 CREATE DATABASE notesdb CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
-CREATE USER 'notesuser'@'localhost' IDENTIFIED BY 'ChangeMe_StrongPassword';
+CREATE USER 'notesuser'@'localhost' IDENTIFIED BY '<strong-local-password>';
 GRANT ALL PRIVILEGES ON notesdb.* TO 'notesuser'@'localhost';
 FLUSH PRIVILEGES;
 
@@ -205,10 +205,12 @@ Copy service file:
 sudo cp systemd/notesapp.service /etc/systemd/system/notesapp.service
 ```
 
-Edit DB password in service:
+Create the runtime environment file:
 
 ```bash
-sudo nano /etc/systemd/system/notesapp.service
+sudo cp .env.example /etc/notesapp.env
+sudo chmod 600 /etc/notesapp.env
+sudo nano /etc/notesapp.env
 ```
 
 Then:
@@ -256,7 +258,7 @@ sudo nano /etc/notesapp.cnf
 ```ini
 [client]
 user=notesuser
-password=ChangeMe_StrongPassword
+password=<strong-local-password>
 host=localhost
 ```
 
