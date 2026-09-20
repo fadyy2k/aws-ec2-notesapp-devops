@@ -4,6 +4,7 @@
 ![Linux](https://img.shields.io/badge/Linux-Amazon%20Linux%202023-FCC624?logo=linux)
 ![Nginx](https://img.shields.io/badge/Proxy-Nginx-009639?logo=nginx)
 ![Python](https://img.shields.io/badge/App-Flask-3776AB?logo=python)
+[![Python CI](https://github.com/fadyy2k/aws-ec2-notesapp-devops/actions/workflows/python-ci.yml/badge.svg)](https://github.com/fadyy2k/aws-ec2-notesapp-devops/actions/workflows/python-ci.yml)
 
 ## Project Status
 
