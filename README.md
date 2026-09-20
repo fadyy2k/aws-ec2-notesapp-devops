@@ -1,5 +1,15 @@
 # AWS EC2 Notes App (DevOps Training Project)
 
+![AWS](https://img.shields.io/badge/AWS-EC2-232F3E?logo=amazonaws)
+![Linux](https://img.shields.io/badge/Linux-Amazon%20Linux%202023-FCC624?logo=linux)
+![Nginx](https://img.shields.io/badge/Proxy-Nginx-009639?logo=nginx)
+![Python](https://img.shields.io/badge/App-Flask-3776AB?logo=python)
+
+## Project Status
+
+**Training / reproducible lab.** This repository demonstrates a complete single-host deployment pattern and deliberately documents where production hardening would go further.
+
+
 Deploy a simple **note-taking web application** on **AWS EC2** with:
 
 - **Amazon Linux 2023**
@@ -323,3 +333,25 @@ And one browser screenshot showing:
 │   └── backup_notesdb.sh
 └── README.md
 ```
+
+
+---
+
+## Engineering Review Notes
+
+### What this lab proves
+
+- application process management behind a reverse proxy
+- local relational database persistence
+- dedicated backup storage
+- repeatable backup execution
+- service-level health verification
+- host/reboot persistence for mounted storage
+
+### Production evolution
+
+For a real production service I would move database credentials out of service files, terminate HTTPS, restrict administrative access, send backups off-host, add monitoring/alerting, and provision infrastructure through IaC rather than manual EC2 steps.
+
+### Public-repo security
+
+All values in this repository are examples. Never commit real database passwords, SSH private keys, AWS credentials, account IDs, or reachable administrative endpoints.
